@@ -1,6 +1,6 @@
 # PreProcessor
 
-CONTENTS
+TABLE OF CONTENTS
 =========================
 
 1. [Introduction](#1-introduction)
@@ -9,22 +9,20 @@ CONTENTS
  	- 3.1. [External Libraries](#31-external-libraries)
     - 3.1.1 [NLP libraries](#32-nlp-libraries)
 4. [Requirements](#4-requirements)
-5. [Quick start](#5-quick-start)
-    - 5.1. [Input formats](#51-input-formats)
-6. [License](#6-license)
+5. [License](#6-license)
 
 
 
 1. INTRODUCTION
 =========================
-PreProcessor is a program that helps users to preprocess textual data. Despite various Part of Speech taggers, Lemmatisers, Stemmers, Named Entities Recognisers and Stopword Checkers can be used for this purpose, they are independent programs built for only one specifically purpose (e.g. identify the word's stem). Thus, when users want to use more than one or import them in their own programs/ applications, their integration turns to be really complex and time-consuming. Accordingly, PreProcessor aims at offering the user with a simple, yet robust and agile variety of morphosyntatic options to annotate raw text by taking advantage of the best known open-source libraries on the market.
+PreProcessor is a program that helps users to annotate raw textual data. Despite various Part of Speech taggers, Lemmatisers, Stemmers, Named Entities Recognisers, Stence Delimiters, Tokenisers and Stopword Checkers can be used for this purpose, they are independent programs built for only one specifically purpose (e.g. identify the word's stem). Thus, when users want to use more than one or import them in their own programs/ applications, their integration turns to be really complex and time-consuming. As an attempt to fulfil this gap, PreProcessor aims at offering the user with a simple, yet robust and agile variety of morphosyntatic options to annotate raw textual data by taking advantage of the best known open-source libraries on the market.
 
 
 
 2. TECHNICAL INFORMATION
 =========================
 
-* This program provides several abstraction methods to several NLP tools, such as TreeTagger, Snowball and OpenNLP and several similarity Measures, which permits to do:
+* This program provides several abstraction methods to several NLP tools, such as TreeTagger, Snowball and OpenNLP and several, such as:
 	* POS Tagging (EN, ES, etc.)
 		* @ SentenceAnalyser.getTaggedSentenceList(String rawSentence): receives a *sentence* to be tagged and returns a *list with tags*.
 	* Lemmatisation (EN, ES, etc.)
@@ -35,8 +33,7 @@ PreProcessor is a program that helps users to preprocess textual data. Despite v
 		* @ SentenceAnalyser.getStopwordCheckerList(List<String> rawTokensList): receives a *list of tokens/words* and returns a *boolean list with true's and false's* (true means that the token/word is a stopword).
 	* Check for Common Categories (EN and ES)
 		* @ SentenceAnalyser.getCommonCategories(String[] tokanizedSentence1, String[] tokanizedSentence2): receives *two tokenized sentences in the same language* and returns a *HashMap<String, Boolean>* (String - category; Boolean - true if the category was found in both sentences), i.e. returns the intersection of the common named entities categories extracted from the two sentences.
-			* Categories available for Spanish English: see section 2.1.1 NLP libraries.		
-
+			* Categories available for Spanish English: see section 2.1.1 NLP libraries.
 
 * How to create the object:
 	* SentenceAnalyser for English?
@@ -45,51 +42,28 @@ PreProcessor is a program that helps users to preprocess textual data. Despite v
 		* SentenceAnalyser sa = new SentenceAnalyser(Constants.ES);
 
 
-2. INSTALATION
+3. INSTALATION
 =========================
 
 1. Import the code to your Java editor.
 
-2. Copy the folder 'config' and 'resources' to the root of your project (it should be at the same level as the src folder).
-	* the folder 'resources' contains models for the:
+2. Copy the folder 'config' and 'internalResources' to the root of your project (it should be at the same level as the src folder).
+	* the folder 'internalResources' contains models for the:
 		* TreeTagger
 		* OpenNLP
 		* Stanford NLP
 		* and Stopword Lists
 
-	* the folder 'config' contains configuration files for the Semantic Similarity Measures. You need to configure the folowing files and parameters, see step 3 first:
-		* adw.properties 
-			* wn30g.ppv.path= path to: /externalResources/adwResources/ppvs.30g.5k/
-			* offset.map.file= path to: /externalResources/adwResources/offset2ID.map.tsv
-			
-		* jlt.properties
-			* wordnet.wordnetData3.0= path to: /externalResources/adwResources/WordNet-3.0/dict
-			* stopwords.FilePrefix = path to: /externalResources/adwResources/jlt/stopwords/stopwords
-			* stanford.pos.model= path to: /externalResources/adwResources/jlt/stanford/left3words-wsj-0-18.tagger
-
-3. Copy the folder 'externalResources' to your workspace (it should be at the same level as your project is).
-	* this folder contains semantic signatures for the Semantic Similarity Measures
-
-	* please check if the Semantic signatures are up-to-date through http://lcl.uniroma1.it/adw/ppvs.30g.5k.tar.bz2, if yes go to step 4.
-
-		* if an update is required: Extract the downloaded file into a directory of your choice, I sugest you to use: 
-			* /resources/adwResources/ (it should be at the same level as your project is)
-
-		* then, update the 'wn30g.ppv.path' entry in the 'config/adw.properties' file, with the directory containing semantic signatures.
+	* the folder 'config' contains configuration files for the TreeTagger. You need to configure the treetagger.properties file.
 
 
-
-
-
-
-## 2.1 External Libraries 
-
+## 3.1 External Libraries 
 This section is important to let you know what libraries are used in this project, as weel as to know how to update the resources or models.
 
-
-#### 2.1.1 NLP libraries
+#### 3.1.1 NLP libraries
 	* TreeTagger
 		* provides a POS Tagger for EN, SP, PT, FR, DE, IT and RU
+			* due to the github limitations, we need to download the RU model from the following address: http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/russian-par-linux-3.2-utf8.bin.gz
 		* The following java library allows to use TreeTagger in Java.
 			* org.annolab.tt4j-1.0.15
 
@@ -123,88 +97,17 @@ This section is important to let you know what libraries are used in this projec
 			* the English and Spanish models are loaded by the 'NEREnModelsLoader' and 'NEREsModelsLoader' classes, respectivly.
 
 	* Stanford NLP
-		* provides a **sparser** in EN and ES
+		* provides a **parser** in EN and ES
 
 
 
 
-#### 2.1.2 Semantic Similarity Libraries
-	* ADW
-		* Semantic Similarity Library provides ....
-
-		* adw.v1.0, read: ADW-README.txt
-		* This package provides an implementation of Align, Disambiguate, and Walk (ADW). ADW is a WordNet-based approach for measuring semantic similarity of arbitrary pairs of lexical items, from word senses to full texts. The approach leverages random walks on semantic networks for modeling lexical items.
-
-#### 2.1.3 Translation Libraries
-	* Yandex (http://api.yandex.com/translate/doc/dg/yandex-translate-dg.pdf)
-		* get API Key: http://api.yandex.com/key/form.xml?service=trnsl
-		* requires:
-			* json_simple-1.1.jar
-
-	* in the future take a look at webservicex (http://www.webservicex.net/ws/WSDetails.aspx?CATID=12&WSID=63)
-		* example
-			* http://www.webservicex.net/TranslateService.asmx/Translate?LanguageMode=SpanishTOEnglish&Text=Hola
-			* http://www.webservicex.net/TranslateService.asmx?WSDL
-
-#### 2.1.4 Dictionaires
-	* BabelNet WebService
-		* requires:
-			* commons-io-2.4.jar
-			* jsoup-1.8.1.jar
-
-
-#### 2.1.5 Wordnet Libraries
-	* JWI
-		* requires:
-			* edu.mit.jwi_2.3.3
-
-#### 2.1.6 Database Connectors
-	* Mysql
-		* when mysql does not want to start: sudo /Applications/XAMPP/xamppfiles/bin/mysql.server start
-		* mysql-connector-java-5.1.29-bin.jar
-
-#### 2.1.7 Others
-	* CSV
-		* To read and write CSV files
-		* opencsv-3.3.jar
-		* http://opencsv.sourceforge.net/#how-to-read
-
-3. REQUIREMENTS
+4. REQUIREMENTS
 =========================
 
 - Java 6 (JRE 1.6) or higher
+- Several models and libraries (already included either in the 'internalResources' or in the 'libs' folder)
 
-- Semantic signatures (see [Installation](#2-installation))
-- WordNet 3.0 dictionary files (already included in the resources directory)
-- Several models (already included either in the 'internalResources' or in the 'externalResources' folder)
-
-
-
-
-4. QUICK START
-=========================
-
-The following is a usage example to do POS tagging, Lemmatisations, Stemming,  and measure the semantic similarity.
-In detail, this jar allows you to do:
-
-* POS Tagging (EN and ES) 
-	* @ SentenceAnalyser.getTaggedSentenceList: receives a sentence to be tagged and returns a list with tags.
-
-* Lemmatisation (EN and ES)
-	* @ SentenceAnalyser.getLemmatizedSentenceList: receives a sentence to be lemmatised. Please make sure that you called the @ getTaggedSentenceList(String rawSentence) method first.
-
-* Stemming (EN and ES)
-	* @ SentenceAnalyser.getStemmedTokensList: receives a list of tokens/words to be stemmed and returns a stemmed list of tokens.
-
-* Stopword Checker (EN and ES)
-	* @ SentenceAnalyser.getStopwordCheckerList: receives a list of tokens/words and returns a boolean list with true's and false's (true means that the token/word is a stopword).
-
-* Common Categories Checker (EN and ES)
-	* @ SentenceAnalyser.getCommonCategories: receives two tokanized sentences in the same language and returns the intersection of the common named entities categories extracted from the two sentences.
-
-* Semantic Similarity Measures (EN)
-	* @ SentenceAnalyser. 
-		* Cosine
 
 
 
