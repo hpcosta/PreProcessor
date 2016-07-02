@@ -15,31 +15,16 @@ TABLE OF CONTENTS
 
 1. INTRODUCTION
 =========================
-PreProcessor is a program that helps users to annotate raw textual data. Despite various Part of Speech taggers, Lemmatisers, Stemmers, Named Entities Recognisers, Stence Delimiters, Tokenisers and Stopword Checkers can be used for this purpose, they are independent programs built for only one specifically purpose (e.g. identify the word's stem). Thus, when users want to use more than one or import them in their own programs/ applications, their integration turns to be really complex and time-consuming. As an attempt to fulfil this gap, PreProcessor aims at offering the user with a simple, yet robust and agile variety of morphosyntatic options to annotate raw textual data by taking advantage of the best known open-source libraries on the market.
+PreProcessor is a program that helps users to process and annotate raw textual data. Despite various Part of Speech taggers, Lemmatisers, Stemmers, Named Entities Recognisers, Sentence Splitters, Tokenisers and Stopword Checkers can be used for this purpose, they are independent programs built for only one specifically purpose (e.g. identify the word's stem). Thus, when users want to use more than one or import them in their own programs/ applications, their integration turns to be really complex and time-consuming. As an attempt to fulfil this gap, PreProcessor aims at offering the user with a simple, yet robust and agile variety of morphosyntatic options to process and annotate raw textual data by taking advantage of the best known open-source libraries on the market.
 
 
 
 2. TECHNICAL INFORMATION
 =========================
 
-* This program provides several abstraction methods to several NLP tools, such as TreeTagger, Snowball and OpenNLP and several, such as:
-	* POS Tagging (EN, ES, etc.)
-		* @ SentenceAnalyser.getTaggedSentenceList(String rawSentence): receives a *sentence* to be tagged and returns a *list with tags*.
-	* Lemmatisation (EN, ES, etc.)
-		* @ SentenceAnalyser.getLemmatizedSentenceList(String rawSentence): receives a *sentence* to be lemmatised and returns a *list with lemmas*. *Please make sure that you called the @ SentenceAnalyser.getTaggedSentenceList(String rawSentence) method first*.
-	* Stemming (EN, ES, etc.)
-		* @ SentenceAnalyser.getStemmedTokensList(List<String> rawTokensList): receives a *list of tokens/words* to be stemmed and returns a *stemmed list of tokens*.
-	* Check for Stopword (EN and ES)
-		* @ SentenceAnalyser.getStopwordCheckerList(List<String> rawTokensList): receives a *list of tokens/words* and returns a *boolean list with true's and false's* (true means that the token/word is a stopword).
-	* Check for Common Categories (EN and ES)
-		* @ SentenceAnalyser.getCommonCategories(String[] tokanizedSentence1, String[] tokanizedSentence2): receives *two tokenized sentences in the same language* and returns a *HashMap<String, Boolean>* (String - category; Boolean - true if the category was found in both sentences), i.e. returns the intersection of the common named entities categories extracted from the two sentences.
-			* Categories available for Spanish English: see section 2.1.1 NLP libraries.
-
-* How to create the object:
-	* SentenceAnalyser for English?
-		* SentenceAnalyser sa = new SentenceAnalyser(Constants.EN);			
-	* SentenceAnalyser for Spanish?
-		* SentenceAnalyser sa = new SentenceAnalyser(Constants.ES);
+* This program provides several abstraction methods to perform various NLP tasks, such as: POS Tagging (TreeTagger); Lemmatisation (TreeTagger); Stemming (Snowball); Tokenisation (OpenNLP); Sentence Delimitation (OpenNLP); NER (OpenNLP); and Stopword Checker. Hereafter we describe how these methods can be called.
+	* NLPManager nlpManager = new NLPManager(Constants.EN); // receives *the language*
+	* The NLPManager class wraps all the NLP methods offered by the PreProcessor. Within this class you will find a demo() that demonstrates how you can use all these methods for various languages. Please have a closer look at the demo() method located at *'src/nlp/NLPManager'*
 
 
 3. INSTALATION
@@ -48,13 +33,12 @@ PreProcessor is a program that helps users to annotate raw textual data. Despite
 1. Import the code to your Java editor.
 
 2. Copy the folder 'config' and 'internalResources' to the root of your project (it should be at the same level as the src folder).
-	* the folder 'internalResources' contains models for the:
-		* TreeTagger
-		* OpenNLP
-		* Stanford NLP
-		* and Stopword Lists
+	* The folder 'internalResources' contains models for the:
+		* TreeTagger (English, French, German, Italian, Portuguese and Spanish)
+		* OpenNLP (tokeniser, sentence splitter and NER - only for English)
+		* Stopword files (German, English, Italian, Portuguese and Spanish)
 
-	* the folder 'config' contains configuration files for the TreeTagger. You need to configure the treetagger.properties file.
+	* The folder 'config' contains a configuration file for the TreeTagger. You will need have the TreeTagger intalled in your computer an configure the treetagger.properties file.
 
 
 ## 3.1 External Libraries 
@@ -69,7 +53,7 @@ This section is important to let you know what libraries are used in this projec
 
 	* Stemmer 
 		* provides a Stemmer for EN, SP, PT, FR, DE, IT and RU
-		* the following java library allows to use Stemmer in Java]
+		* the following java library allows to use Stemmer in Java
 			* org.tartarus.snowball
 
 	* OpenNLP
@@ -96,10 +80,6 @@ This section is important to let you know what libraries are used in this projec
 				* Misc name finder model, trained on conll02 shared task data.
 			* the English and Spanish models are loaded by the 'NEREnModelsLoader' and 'NEREsModelsLoader' classes, respectivly.
 
-	* Stanford NLP
-		* provides a **parser** in EN and ES
-
-
 
 
 4. REQUIREMENTS
@@ -114,7 +94,8 @@ This section is important to let you know what libraries are used in this projec
 5. LICENSE
 =========================
 
-Copyright (c) 2013-2016 University of Malaga, Spain. 
+Copyright (c) 2013-2016 
+Hernani Costa @LEXYTRAD, University of Malaga, Spain. 
 All rights reserved.
 
 For more information please contact:
