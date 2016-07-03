@@ -24,7 +24,7 @@ PreProcessor is a program that helps users to process and annotate raw textual d
 
 * This program provides several abstraction methods to perform various NLP tasks, such as: POS Tagging (TreeTagger); Lemmatisation (TreeTagger); Stemming (Snowball); Tokenisation (OpenNLP); Sentence Delimitation (OpenNLP); NER (OpenNLP); and Stopword Checker. Hereafter we describe how these methods can be called.
 	* NLPManager nlpManager = new NLPManager(Constants.EN); // receives *the language*
-	* The NLPManager class wraps all the NLP methods offered by the PreProcessor. Within this class you will find a demo() that demonstrates how you can use all these methods for various languages. Please have a closer look at the demo() method located at *'src/nlp/NLPManager'*
+	* The NLPManager class wraps all the NLP methods offered by the PreProcessor (http://github.com/hpcosta/PreProcessor). Within this class you will find a demo() that demonstrates how you can use all these methods for various languages. Please have a closer look at the demo() method located at *'src/nlp/NLPManager'*
 
 
 3. INSTALATION
@@ -38,11 +38,11 @@ PreProcessor is a program that helps users to process and annotate raw textual d
 		* OpenNLP (tokeniser, sentence splitter and NER - only for English)
 		* Stopword files (German, English, Italian, Portuguese and Spanish)
 
-	* The folder 'config' contains a configuration file for the TreeTagger. You will need have the TreeTagger intalled in your computer an configure the treetagger.properties file.
+	* The folder 'config' contains a configuration file for the TreeTagger. You will need have the TreeTagger installed in your computer an configure the treetagger.properties file.
 
 
 ## 3.1 External Libraries 
-This section is important to let you know what libraries are used in this project, as weel as to know how to update the resources or models.
+This section is important to let you know what libraries are used in this project, as well as to know how to update the resources or models.
 
 #### 3.1.1 NLP libraries
 	* TreeTagger
@@ -78,7 +78,7 @@ This section is important to let you know what libraries are used in this projec
 				* Organization name finder model, trained on conll02 shared task data.	
 				* Person name finder model, trained on conll02 shared task data.	
 				* Misc name finder model, trained on conll02 shared task data.
-			* the English and Spanish models are loaded by the 'NEREnModelsLoader' and 'NEREsModelsLoader' classes, respectivly.
+			* the English and Spanish models are loaded by the 'NEREnModelsLoader' and 'NEREsModelsLoader' classes, respectively.
 
 
 
