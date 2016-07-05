@@ -6,8 +6,8 @@ TABLE OF CONTENTS
 1. [Introduction](#1-introduction)
 2. [Technical Information](#2-tech)
 3. [Installation](#2-installation)
- 	- 3.1. [External Libraries](#31-external-libraries)
-    - 3.1.1 [NLP libraries](#32-nlp-libraries)
+ 	- 3.1. [External Libraries](#3.1.-external-libraries)
+    - 3.1.1 [NLP libraries](#3.1.1.-nlp-libraries)
 4. [Requirements](#4-requirements)
 5. [License](#6-license)
 
@@ -15,6 +15,7 @@ TABLE OF CONTENTS
 
 1. INTRODUCTION
 =========================
+
 PreProcessor is a program that helps users to process and annotate raw textual data. Despite various Part of Speech taggers, Lemmatisers, Stemmers, Named Entities Recognisers, Sentence Splitters, Tokenisers and Stopword Checkers can be used for this purpose, they are independent programs built for only one specifically purpose (e.g. identify the word's stem). Thus, when users want to use more than one or import them in their own programs/ applications, their integration turns to be really complex and time-consuming. As an attempt to fulfil this gap, PreProcessor aims at offering the user with a simple, yet robust and agile variety of morphosyntatic options to process and annotate raw textual data by taking advantage of the best known open-source libraries on the market.
 
 
@@ -24,15 +25,14 @@ PreProcessor is a program that helps users to process and annotate raw textual d
 
 * This program provides several abstraction methods to perform various NLP tasks, such as: POS Tagging (TreeTagger); Lemmatisation (TreeTagger); Stemming (Snowball); Tokenisation (OpenNLP); Sentence Delimitation (OpenNLP); NER (OpenNLP); and Stopword Checker. Hereafter we describe how these methods can be called.
 	* NLPManager nlpManager = new NLPManager(Constants.EN); // receives *the language*
-	* The NLPManager class wraps all the NLP methods offered by the PreProcessor (http://github.com/hpcosta/PreProcessor). Within this class you will find a demo() that demonstrates how you can use all these methods for various languages. Please have a closer look at the demo() method located at *'src/nlp/NLPManager'*
-
+	* The NLPManager class wraps all the NLP methods offered by the PreProcessor (http://github.com/hpcosta/PreProcessor). Within this class you will find a demo() that demonstrates how you can use all these methods for various languages. Please have a closer look at the demo() method located at *'src/nlp/NLPManager'* 
 
 3. INSTALATION
 =========================
 
 1. Import the code to your Java editor.
 
-2. Copy the folder 'config' and 'internalResources' to the root of your project (it should be at the same level as the src folder).
+2. The folder 'config' and 'internalResources' should be at the same level as the src folder.
 	* The folder 'internalResources' contains models for the:
 		* TreeTagger (English, French, German, Italian, Portuguese and Spanish)
 		* OpenNLP (tokeniser, sentence splitter and NER - only for English)
